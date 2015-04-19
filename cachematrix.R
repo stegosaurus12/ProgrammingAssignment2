@@ -4,19 +4,28 @@
 
 makeCacheMatrix <- function(x = matrix()) {
 #assume input matrix is invertible
+ 
   #create variable for inverse
   inverse <- NULL
   #store matrix
   matr <- x
   
+  #create function to set the matrix and inverse
   set <- function(y) {
     inverse <<- NULL
     x <<- y
   }
   
+  #create function to retrieve the matrix
   get <- function() x
+  
+  #create function to set the inverse
   setinverse <- function(i) inverse <- i
+  
+  #create function to retrieve the inverse
   getinverse <- function() inverse
+  
+  #create a list of all the 4 functions I just created
   list (set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
