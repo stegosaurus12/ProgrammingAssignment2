@@ -18,7 +18,7 @@ makeCacheMatrix <- function(x = matrix()) {
   get <- function() x
   
   #create function to set the inverse
-  setinverse <- function(i) inverse <- i
+  setinverse <- function(i) inverse <<- i
   
   #create function to retrieve the inverse
   getinverse <- function() inverse
@@ -32,24 +32,24 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   #retrieve the inverse of the matrix
-  inv <- x$getinverse()
+  inverse <- x$getinverse()
   
   #check if inverse of the matrix is empty. If not, return this retrieved value
-  if(!is.null(inv)) {
-    message("Retrieving cached inverse of matrix!")
-    return(inv)
+  if(!is.null(inverse)) {
+    message("Retrieving cached data")
+    return(inverse)
   }
   
   #if inverse was not cached and is now empty...
   #retrieve the matrix
-  matr <- x$get()
+  data <- x$get()
   
   #find the inverse of the matrix
-  inv <- solve(x,...)
+  inverse <- solve(data,...)
   
   #set the inverse of this matrix to cache
-  x$setinverse(inv)
+  x$setinverse(inverse)
   
   #return inverse of matrix
-  inv
+  inverse
 }
